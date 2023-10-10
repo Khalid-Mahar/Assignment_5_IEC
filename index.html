@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Simple Calculator</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      .calculator {
+        max-width: 300px;
+        margin: 50px auto;
+        background-color: #f4f4f4;
+        border-radius: 10px;
+        padding: 10px;
+      }
+      .display {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding: 5px;
+        text-align: right;
+        height: 50px;
+      }
+      .btn {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="calculator">
+        <div class="display">
+          <div id="expression"></div>
+          <div id="result"></div>
+        </div>
+        <div class="row justify-content-center">
+          <button class="btn btn-primary" onclick="addToExpression('7')">
+            7
+          </button>
+          <button class="btn btn-primary" onclick="addToExpression('8')">
+            8
+          </button>
+          <button class="btn btn-primary" onclick="addToExpression('9')">
+            9
+          </button>
+          <button class="btn btn-danger" onclick="addToExpression('/')">
+            /
+          </button>
+        </div>
+
+        <div class="row justify-content-center">
+          <button class="btn btn-primary" onclick="addToExpression('4')">
+            4
+          </button>
+          <button class="btn btn-primary" onclick="addToExpression('5')">
+            5
+          </button>
+          <button class="btn btn-primary" onclick="addToExpression('6')">
+            6
+          </button>
+          <button class="btn btn-danger" onclick="addToExpression('*')">
+            *
+          </button>
+        </div>
+
+        <div class="row justify-content-center">
+          <button class="btn btn-primary" onclick="addToExpression('1')">
+            1
+          </button>
+          <button class="btn btn-primary" onclick="addToExpression('2')">
+            2
+          </button>
+          <button class="btn btn-primary" onclick="addToExpression('3')">
+            3
+          </button>
+          <button class="btn btn-danger" onclick="addToExpression('-')">
+            -
+          </button>
+        </div>
+
+        <div class="row justify-content-center">
+          <button class="btn btn-primary" onclick="addToExpression('0')">
+            0
+          </button>
+          <button class="btn btn-primary" onclick="addToExpression('.')">
+            .
+          </button>
+          <button class="btn btn-success" onclick="calculate()">=</button>
+          <button class="btn btn-danger" onclick="addToExpression('+')">
+            +
+          </button>
+        </div>
+
+        <div class="row justify-content-center">
+          <button class="btn btn-warning" onclick="calculatePercentage()">
+            %
+          </button>
+          <button class="btn btn-info" onclick="calculateSquareRoot()">
+            √
+          </button>
+          <button class="btn btn-danger" onclick="clearDisplay()">AC</button>
+          <button class="btn btn-dark" onclick="backspace()">←</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function addToExpression(value) {
+        document.getElementById("expression").textContent += value;
+      }
+
+      function calculate() {
+        const expression = document.getElementById("expression").textContent;
+        const result = eval(expression);
+        document.getElementById("result").textContent = result;
+      }
+
+      function calculatePercentage() {
+        const expression = document.getElementById("expression").textContent;
+        const value = eval(expression) / 100;
+        document.getElementById("result").textContent = value;
+      }
+
+      function calculateSquareRoot() {
+        const expression = document.getElementById("expression").textContent;
+        const value = Math.sqrt(eval(expression));
+        document.getElementById("result").textContent = value;
+      }
+
+      function clearDisplay() {
+        document.getElementById("expression").textContent = "";
+        document.getElementById("result").textContent = "";
+      }
+
+      function backspace() {
+        const expression = document.getElementById("expression").textContent;
+        document.getElementById("expression").textContent = expression.slice(
+          0,
+          -1
+        );
+      }
+    </script>
+  </body>
+</html>
